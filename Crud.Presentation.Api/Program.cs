@@ -1,14 +1,8 @@
-using Crud.Application.Interfaces;
-using Crud.Application.Services;
 using Crud.Infraestructure.Data.Context;
-using Crud.Infraestructure.Data.Repositories;
 using Crud.Infraestructure.Domain.Entities;
 using Crud.Presentation.Api.Extensions;
 using Crud.Presentation.Api.Filters;
-using Crud.Presentation.Api.Swagger;
 using Microsoft.AspNetCore.Mvc.Formatters;
-using System;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,9 +24,7 @@ builder.Services.AddScoped<FilterActionContextFields<Users>>();
 builder.Services.AddScoped<FilterActionContextTables<Users>>();
 #endregion Action Filters.
 
-builder.Services.AddScoped<IServiceUsers, ServiceUsers>();
-
-builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+builder.Services.AddClassesMatchingInterfaces(nameof(Crud));
 
 var app = builder.Build();
 
@@ -41,11 +33,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     // Code for Development here.
+    app.UseDeveloperExceptionPage();
+
     app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        options.EnableTryItOutByDefault();
-    });
+    app.UseSwaggerUI(options => options.EnableTryItOutByDefault());
 
     app.Use(async (context, next) =>
     {
@@ -57,8 +48,6 @@ if (app.Environment.IsDevelopment())
 
         await next();
     });
-
-    app.UseDeveloperExceptionPage();
 }
 else if (app.Environment.IsStaging())
 {
