@@ -8,8 +8,10 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <InvariantGlobalization>false</InvariantGlobalization>
     <Authors>Claudiomildo Ventura</Authors>
+    <Version>1.0.0</Version>
     <Company>CVWork</Company>
     <Copyright>2024 clv.net</Copyright>
+    <Description>Crud in ASP NET</Description>
   </PropertyGroup>
 
 </Project>

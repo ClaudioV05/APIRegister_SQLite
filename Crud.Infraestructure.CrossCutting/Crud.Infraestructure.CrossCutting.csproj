@@ -4,9 +4,13 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors> <!--The options control how the compiler reports errors and warnings.-->
-    <InvariantGlobalization>true</InvariantGlobalization> <!--Determines whether a .NET Core app runs in globalization-invariant mode without access to culture-specific data and behavior.-->
-
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <Authors>Claudiomildo Ventura</Authors>
+    <Version>1.0.0</Version>
+    <Company>CVWork</Company>
+    <Copyright>2024 clv.net</Copyright>
+    <Description>Crud in ASP NET</Description>
   </PropertyGroup>
 
 </Project>
