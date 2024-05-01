@@ -31,7 +31,6 @@ public class CrudController : ControllerBase
     [Route("/Create")]
     [ApiExplorerSettings(IgnoreApi = false)]
     [ServiceFilter(typeof(FilterActionContextLog), Order = 2)]
-    [ServiceFilter(typeof(FilterActionContextTables<Users>), Order = 3)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create([BindRequired] Users users)
@@ -57,7 +56,6 @@ public class CrudController : ControllerBase
     [Route("/Read")]
     [ApiExplorerSettings(IgnoreApi = false)]
     [ServiceFilter(typeof(FilterActionContextLog), Order = 2)]
-    [ServiceFilter(typeof(FilterActionContextTables<Users>), Order = 3)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Read()
@@ -82,7 +80,6 @@ public class CrudController : ControllerBase
     [Route("/Update")]
     [ApiExplorerSettings(IgnoreApi = false)]
     [ServiceFilter(typeof(FilterActionContextLog), Order = 2)]
-    [ServiceFilter(typeof(FilterActionContextTables<Users>), Order = 3)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Update([BindRequired] Users users)
@@ -109,7 +106,6 @@ public class CrudController : ControllerBase
     [Route("/Delete")]
     [ApiExplorerSettings(IgnoreApi = false)]
     [ServiceFilter(typeof(FilterActionContextLog), Order = 2)]
-    [ServiceFilter(typeof(FilterActionContextTables<Users>), Order = 3)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Delete([BindRequired] int id)

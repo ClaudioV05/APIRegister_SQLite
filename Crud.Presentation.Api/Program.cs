@@ -20,8 +20,6 @@ builder.Services.AddDbContext<DatabaseContext>();
 #region Action Filters.
 builder.Services.AddScoped<FilterActionContextController>();
 builder.Services.AddScoped<FilterActionContextLog>();
-builder.Services.AddScoped<FilterActionContextFields<Users>>();
-builder.Services.AddScoped<FilterActionContextTables<Users>>();
 #endregion Action Filters.
 
 builder.Services.AddClassesMatchingInterfaces(nameof(Crud));
@@ -62,7 +60,6 @@ else if (app.Environment.IsProduction())
 }
 
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-app.ConfigureExceptionHandler();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
