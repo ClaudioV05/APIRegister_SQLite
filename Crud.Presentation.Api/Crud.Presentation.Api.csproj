@@ -5,8 +5,11 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>12.0</LangVersion>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors> <!--The options control how the compiler reports errors and warnings.-->
-    <InvariantGlobalization>false</InvariantGlobalization> <!--Determines whether a .NET Core app runs in globalization-invariant mode without access to culture-specific data and behavior.-->
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <Authors>Claudiomildo Ventura</Authors>
+    <Company>CVWork</Company>
+    <Copyright>2024 clv.net</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
