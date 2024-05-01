@@ -29,7 +29,7 @@ namespace Crud.Infraestructure.Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connection = _configuration["ConnectionStrings:DatabaseConnection"];
-            optionsBuilder.UseSqlServer(connection, ef => ef.MigrationsAssembly("Crud.Presentation.Api"));
+            optionsBuilder.UseSqlServer(connection, ef => ef.MigrationsAssembly(_configuration["PresentationProjectName"]));
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
