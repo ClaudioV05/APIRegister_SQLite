@@ -1,10 +1,9 @@
-﻿namespace Crud.Infraestructure.Domain.Interfaces
+﻿namespace Crud.Infraestructure.Domain.Interfaces;
+
+/// <summary>
+/// Interface IEntity.
+/// </summary>
+public interface IEntity
 {
-    /// <summary>
-    /// Interface IEntity.
-    /// </summary>
-    public interface IEntity
-    {
-        long Id { get; set; }
-    }
+    long Id { get; set; }
 }

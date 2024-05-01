@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Crud.Presentation.Api.Filters
+namespace Crud.Presentation.Api.Filters;
+
+public class FilterActionContextController : IAsyncActionFilter
 {
-    public class FilterActionContextController : IAsyncActionFilter
+    public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
-        public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
-        {
-            await next();
-        }
+        await next();
     }
 }

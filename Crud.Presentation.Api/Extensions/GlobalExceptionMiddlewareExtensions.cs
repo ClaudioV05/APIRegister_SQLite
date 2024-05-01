@@ -2,37 +2,36 @@
 using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
 
-namespace Crud.Presentation.Api.Extensions
+namespace Crud.Presentation.Api.Extensions;
+
+public static class CrudExceptionMiddlewareExtensions
 {
-    public static class CrudExceptionMiddlewareExtensions
+    public static void ConfigureExceptionHandler(this IApplicationBuilder app)
     {
-        public static void ConfigureExceptionHandler(this IApplicationBuilder app)
+        app.UseExceptionHandler(appError =>
         {
-            app.UseExceptionHandler(appError =>
+            appError.Run(async context =>
             {
-                appError.Run(async context =>
+                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                context.Response.ContentType = "application/json";
+
+                var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
+
+                if (contextFeature != null)
                 {
-                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    context.Response.ContentType = "application/json";
-
-                    var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
-
-                    if (contextFeature != null)
+                    await context.Response.WriteAsync(new ErrorDetails()
                     {
-                        await context.Response.WriteAsync(new ErrorDetails()
-                        {
-                            StatusCode = context.Response.StatusCode,
-                            Message = contextFeature.Error.Message
-                            /*
-                             * This two fields take in file of log.
-                             * 
-                            Source = contextFeature.Error.Source,
-                            StackTrace = contextFeature.Error.StackTrace,
-                            */
-                        }.ToString());
-                    }
-                });
+                        StatusCode = context.Response.StatusCode,
+                        Message = contextFeature.Error.Message
+                        /*
+                         * This two fields take in file of log.
+                         * 
+                        Source = contextFeature.Error.Source,
+                        StackTrace = contextFeature.Error.StackTrace,
+                        */
+                    }.ToString());
+                }
             });
-        }
+        });
     }
 }

@@ -1,38 +1,37 @@
 ﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Crud.Presentation.Api.Swagger
+namespace Crud.Presentation.Api.Swagger;
+
+public class DocumentationHeaderAttribute : IOperationFilter
 {
-    public class DocumentationHeaderAttribute : IOperationFilter
+    public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
-        public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        if (operation.Parameters == null)
         {
-            if (operation.Parameters == null)
-            {
-                operation.Parameters = new List<OpenApiParameter>();
-            }
-
-            operation.Parameters.Add(new OpenApiParameter
-            {
-                Name = "scriptMetadata",
-                In = ParameterLocation.Header,
-                Required = false,
-                Schema = new OpenApiSchema
-                {
-                    Type = "String"
-                }
-            });
-
-            operation.Parameters.Add(new OpenApiParameter
-            {
-                Name = "IdDevelopmentEnvironment",
-                In = ParameterLocation.Header,
-                Required = false,
-                Schema = new OpenApiSchema
-                {
-                    Type = "int"
-                }
-            });
+            operation.Parameters = new List<OpenApiParameter>();
         }
+
+        operation.Parameters.Add(new OpenApiParameter
+        {
+            Name = "scriptMetadata",
+            In = ParameterLocation.Header,
+            Required = false,
+            Schema = new OpenApiSchema
+            {
+                Type = "String"
+            }
+        });
+
+        operation.Parameters.Add(new OpenApiParameter
+        {
+            Name = "IdDevelopmentEnvironment",
+            In = ParameterLocation.Header,
+            Required = false,
+            Schema = new OpenApiSchema
+            {
+                Type = "int"
+            }
+        });
     }
 }

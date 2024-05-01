@@ -1,30 +1,29 @@
 ﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Crud.Presentation.Api.Swagger
+namespace Crud.Presentation.Api.Swagger;
+
+public class DocumentationAttribute : IDocumentFilter
 {
-    public class DocumentationAttribute : IDocumentFilter
+    public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
     {
-        public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
+        swaggerDoc.Info = new OpenApiInfo
         {
-            swaggerDoc.Info = new OpenApiInfo
+            Version = "v1",
+            Title = "Crud",
+            Description = "Generator of Class C#",
+            TermsOfService = new Uri("https://claudiomildo.net/terms"),
+            Contact = new OpenApiContact
             {
-                Version = "v1",
-                Title = "Crud",
-                Description = "Generator of Class C#",
-                TermsOfService = new Uri("https://claudiomildo.net/terms"),
-                Contact = new OpenApiContact
-                {
-                    Name = "Claudio Ventura",
-                    Email = "claudiomildo@hotmail.com",
-                    Url = new Uri("https://www.claudiomildo.net"),
-                },
-                License = new OpenApiLicense
-                {
-                    Name = "Information about the license.",
-                    Url = new Uri("https://claudiomildo.net/license"),
-                }
-            };
-        }
+                Name = "Claudio Ventura",
+                Email = "claudiomildo@hotmail.com",
+                Url = new Uri("https://www.claudiomildo.net"),
+            },
+            License = new OpenApiLicense
+            {
+                Name = "Information about the license.",
+                Url = new Uri("https://claudiomildo.net/license"),
+            }
+        };
     }
 }
