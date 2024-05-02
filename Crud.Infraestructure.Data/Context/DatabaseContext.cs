@@ -28,7 +28,7 @@ public sealed class DatabaseContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var connection = _configuration["ConnectionStrings:DatabaseConnection"];
+        var connection = _configuration["ConnectionStrings:DatabaseConnection"]?.ToString();
         optionsBuilder.UseSqlServer(connection, ef => ef.MigrationsAssembly(_configuration["PresentationProjectName"]));
     }
 

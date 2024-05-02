@@ -38,13 +38,12 @@ public class CrudController : ControllerBase
         try
         {
             await _serviceUsers.Create(users);
+            return Ok();
         }
         catch (Exception)
         {
             return this.StatusCode(StatusCodes.Status500InternalServerError);
         }
-
-        return BadRequest();
     }
 
     /// <summary>
@@ -62,7 +61,8 @@ public class CrudController : ControllerBase
     {
         try
         {
-            return Ok(await _serviceUsers.Read());
+            var result = await _serviceUsers.Read();
+            return Ok(result);
         }
         catch (Exception)
         {
@@ -87,13 +87,12 @@ public class CrudController : ControllerBase
         try
         {
             await _serviceUsers.Update(users);
+            return Ok();
         }
         catch (Exception)
         {
             return this.StatusCode(StatusCodes.Status500InternalServerError);
         }
-
-        return BadRequest();
     }
 
     /// <summary>
@@ -113,12 +112,11 @@ public class CrudController : ControllerBase
         try
         {
             await _serviceUsers.Delete(id);
+            return Ok();
         }
         catch (Exception)
         {
             return this.StatusCode(StatusCodes.Status500InternalServerError);
         }
-
-        return BadRequest();
     }
 }

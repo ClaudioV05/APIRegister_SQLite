@@ -3,11 +3,12 @@ using Crud.Presentation.Api.Extensions;
 using Crud.Presentation.Api.Filters;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "CRUD_SQLServer", Version = "v1" }));
 
 builder.Services.AddControllers(options => options.RespectBrowserAcceptHeader = true);
 
