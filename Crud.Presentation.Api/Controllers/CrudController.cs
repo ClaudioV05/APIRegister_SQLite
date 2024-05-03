@@ -40,7 +40,11 @@ public class CrudController : ControllerBase
             await _serviceUsers.Create(users);
             return Ok();
         }
-        catch (Exception)
+        catch (HttpRequestException ex) when (ex.StatusCode.Equals(System.Net.HttpStatusCode.BadRequest))
+        {
+            return this.StatusCode(StatusCodes.Status400BadRequest);
+        }
+        catch (HttpRequestException ex) when (ex.StatusCode.Equals(System.Net.HttpStatusCode.InternalServerError))
         {
             return this.StatusCode(StatusCodes.Status500InternalServerError);
         }
@@ -64,7 +68,11 @@ public class CrudController : ControllerBase
             var result = await _serviceUsers.Read();
             return Ok(result);
         }
-        catch (Exception)
+        catch (HttpRequestException ex) when (ex.StatusCode.Equals(System.Net.HttpStatusCode.BadRequest))
+        {
+            return this.StatusCode(StatusCodes.Status400BadRequest);
+        }
+        catch (HttpRequestException ex) when (ex.StatusCode.Equals(System.Net.HttpStatusCode.InternalServerError))
         {
             return this.StatusCode(StatusCodes.Status500InternalServerError);
         }
@@ -89,7 +97,11 @@ public class CrudController : ControllerBase
             await _serviceUsers.Update(users);
             return Ok();
         }
-        catch (Exception)
+        catch (HttpRequestException ex) when (ex.StatusCode.Equals(System.Net.HttpStatusCode.BadRequest))
+        {
+            return this.StatusCode(StatusCodes.Status400BadRequest);
+        }
+        catch (HttpRequestException ex) when (ex.StatusCode.Equals(System.Net.HttpStatusCode.InternalServerError))
         {
             return this.StatusCode(StatusCodes.Status500InternalServerError);
         }
@@ -114,7 +126,11 @@ public class CrudController : ControllerBase
             await _serviceUsers.Delete(id);
             return Ok();
         }
-        catch (Exception)
+        catch (HttpRequestException ex) when (ex.StatusCode.Equals(System.Net.HttpStatusCode.BadRequest))
+        {
+            return this.StatusCode(StatusCodes.Status400BadRequest);
+        }
+        catch (HttpRequestException ex) when (ex.StatusCode.Equals(System.Net.HttpStatusCode.InternalServerError))
         {
             return this.StatusCode(StatusCodes.Status500InternalServerError);
         }
