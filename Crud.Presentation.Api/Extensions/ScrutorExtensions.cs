@@ -6,7 +6,12 @@ namespace Crud.Presentation.Api.Extensions;
 
 public static class ScrutorExtensions
 {
-    public static IServiceCollection AddClassesMatchingInterfaces(this IServiceCollection services, string @namespace)
+    /// <summary>
+    /// Configure dependencies.
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="namespace"></param>
+    public static void ConfigureDependencies(this IServiceCollection services, string @namespace)
     {
         var assemblies = DependencyContext.Default?
                                           .GetDefaultAssemblyNames()
@@ -18,7 +23,5 @@ public static class ScrutorExtensions
                 .UsingRegistrationStrategy(RegistrationStrategy.Skip)
                 .AsMatchingInterface()
                 .WithScopedLifetime());
-
-        return services;
     }
 }

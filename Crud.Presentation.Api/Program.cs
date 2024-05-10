@@ -1,27 +1,18 @@
-using Crud.Infraestructure.Data.Context;
 using Crud.Presentation.Api.Extensions;
-using Crud.Presentation.Api.Filters;
-using Microsoft.AspNetCore.Mvc.Formatters;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "CRUD_SQLServer", Version = "v1" }));
+builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddControllers(options => options.RespectBrowserAcceptHeader = true);
+builder.Services.ConfigureMvc();
 
-builder.Services.AddCors();
+builder.Services.ConfigureCors();
 
-builder.Services.AddMvc().AddMvcOptions(options => options.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter()));
+builder.Services.ConfigureSwagger();
 
-builder.Services.AddDbContext<DatabaseContext>();
+builder.Services.ConfigureDependencies();
 
-builder.Services.TryAddScoped<FilterActionContextController>();
-builder.Services.TryAddScoped<FilterActionContextLog>();
-
-builder.Services.AddClassesMatchingInterfaces(nameof(Crud));
+builder.Services.ConfigureDependencies(nameof(Crud));
 
 var app = builder.Build();
 
