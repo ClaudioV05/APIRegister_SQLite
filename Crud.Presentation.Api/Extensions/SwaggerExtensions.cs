@@ -10,6 +10,24 @@ public static class SwaggerExtensions
     /// <param name="services"></param>
     public static void ConfigureSwagger(this IServiceCollection services)
     {
-        services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "CRUD_SQLServer", Version = "v1" }));
+        services.AddSwaggerGen(config =>
+        {
+            config.SwaggerDoc("v1", new()
+            {
+                Version = "v1",
+                Title = "CRUD_SQLServer",
+                Description = "Simple CRUD"
+            });
+
+            config.AddSecurityDefinition("Bearer", new()
+            {
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Description = "JWT Authorization header using the Bearer scheme."
+            });
+        });
     }
 }
