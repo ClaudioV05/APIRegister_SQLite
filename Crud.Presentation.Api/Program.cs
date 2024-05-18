@@ -12,6 +12,8 @@ builder.Services.ConfigureSwagger();
 
 builder.Services.ConfigureDependencies();
 
+builder.Services.ConfigureDatabaseDependencies(builder.Configuration);
+
 builder.Services.ConfigureDependencies(nameof(Crud));
 
 var app = builder.Build();
@@ -49,8 +51,12 @@ else if (app.Environment.IsProduction())
     app.UseHsts();
 }
 
-app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+app.UseCors();
+
 app.UseHttpsRedirection();
+
 app.UseAuthorization();
+
 app.MapControllers();
+
 app.Run();
