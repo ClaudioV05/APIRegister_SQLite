@@ -6,6 +6,7 @@ namespace Crud.Infraestructure.Data.Context;
 /// <summary>
 /// Database Context.
 /// </summary>
+/// This class cannot be inherited.
 public sealed class DatabaseContext : DbContext
 {
 
