@@ -2,7 +2,7 @@
 using Scrutor;
 using System.Reflection;
 
-namespace Crud.Presentation.Api.Extensions;
+namespace Crud.Presentation.Api.Extensions.ServiceCollection;
 
 public static class ScrutorExtensions
 {

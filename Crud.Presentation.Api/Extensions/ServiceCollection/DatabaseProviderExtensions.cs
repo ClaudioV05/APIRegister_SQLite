@@ -1,7 +1,7 @@
 ﻿using Crud.Infraestructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Crud.Presentation.Api.Extensions;
+namespace Crud.Presentation.Api.Extensions.ServiceCollection;
 
 public static class DatabaseProviderExtensions
 {

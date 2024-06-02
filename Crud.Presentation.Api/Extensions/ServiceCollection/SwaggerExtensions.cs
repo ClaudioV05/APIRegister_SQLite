@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace Crud.Presentation.Api.Extensions;
+namespace Crud.Presentation.Api.Extensions.ServiceCollection;
 
 public static class SwaggerExtensions
 {

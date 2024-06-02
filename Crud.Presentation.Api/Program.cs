@@ -1,4 +1,5 @@
-using Crud.Presentation.Api.Extensions;
+using Crud.Presentation.Api.Extensions.ApplicationBuilder;
+using Crud.Presentation.Api.Extensions.ServiceCollection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,19 +26,7 @@ if (app.Environment.IsDevelopment())
     // Code for Development here.
     app.UseDeveloperExceptionPage();
 
-    app.UseSwagger();
-    app.UseSwaggerUI(options => options.EnableTryItOutByDefault());
-
-    app.Use(async (context, next) =>
-    {
-        if (context.Request.Path == "/Crud")
-        {
-            context.Response.Redirect("/swagger/index.html");
-            return;
-        }
-
-        await next();
-    });
+    app.ConfigureSwagger();
 }
 else if (app.Environment.IsStaging())
 {

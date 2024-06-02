@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cors.Infrastructure;
 
-namespace Crud.Presentation.Api.Extensions;
+namespace Crud.Presentation.Api.Extensions.ServiceCollection;
 
 public static class CorsExtensions
 {
